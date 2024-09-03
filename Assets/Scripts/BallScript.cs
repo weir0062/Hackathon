@@ -8,6 +8,8 @@ public class BallScript : MonoBehaviour
     public bool InGame = true;
     public GameObject BallSpawnPoint;
     public float BallSpeed;
+    public ScoreManager ScoreManager;
+
 
     void Start()
     {
@@ -16,6 +18,14 @@ public class BallScript : MonoBehaviour
 
     void Update()
     {
+
+        if (ScoreManager.GameOver)
+        {
+            return;
+        }
+        {
+            
+        }
         if (!InGame)
         {
             transform.position = BallSpawnPoint.transform.position;
@@ -35,6 +45,8 @@ public class BallScript : MonoBehaviour
             Debug.Log("YOU LOSE BITCH HAHAHHAHA");
             body.velocity = Vector2.zero;
             InGame = false;
+            ScoreManager.lives--;
+ 
         }
     }
 }

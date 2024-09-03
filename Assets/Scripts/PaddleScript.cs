@@ -8,6 +8,7 @@ public class PaddleScript : MonoBehaviour
 
     float leftEdge = -12.69f;
     float rightEdge = 12.69f;
+    public ScoreManager ScoreManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,12 @@ public class PaddleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (ScoreManager.GameOver)
+        {
+            return;
+        }
+
         float inputX = Input.GetAxisRaw("Horizontal");
 
         if(transform.position.x > leftEdge-0.01f && transform.position.x < rightEdge+0.01f)

@@ -8,11 +8,12 @@ public class Brick : MonoBehaviour
     public Sprite DefaultSprite;
     public Sprite BrokenSprite;
 
-
+    public ScoreManager ScoreManager;
 
     void Start()
     {
         gameObject.GetComponent<SpriteRenderer>().sprite = DefaultSprite;
+        ScoreManager = GameObject.FindObjectOfType<ScoreManager>().GetComponent<ScoreManager>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -26,6 +27,7 @@ public class Brick : MonoBehaviour
         if (hitsToBreak <= 0)
         {
             Destroy(gameObject);
+            ScoreManager.score++;
         }
     }
 }
