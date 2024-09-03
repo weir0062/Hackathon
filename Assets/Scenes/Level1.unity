@@ -2188,7 +2188,8 @@ MonoBehaviour:
   lives: 3
   ScoreText: {fileID: 1503941741}
   LivesText: {fileID: 1450204996}
-  LoseText: {fileID: 0}
+  LoseText: {fileID: 1882245508}
+  GameOver: 0
 --- !u!4 &2119049903
 Transform:
   m_ObjectHideFlags: 0
@@ -2519,6 +2520,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paddle
       objectReference: {fileID: 0}
+    - target: {fileID: 5855826341977351240, guid: 0dd193a8ffdb569448e24c4a33bbe139, type: 3}
+      propertyPath: ScoreManager
+      value: 
+      objectReference: {fileID: 2119049902}
     - target: {fileID: 5855826341977351241, guid: 0dd193a8ffdb569448e24c4a33bbe139, type: 3}
       propertyPath: m_RootOrder
       value: 2
