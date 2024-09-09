@@ -10,6 +10,7 @@ public class BallScript : MonoBehaviour
     public float BallSpeed;
     public ScoreManager ScoreManager;
 
+    public AudioManager Audiomanager;
 
     void Start()
     {
@@ -21,6 +22,8 @@ public class BallScript : MonoBehaviour
 
         if (ScoreManager.GameOver)
         {
+            transform.position = BallSpawnPoint.transform.position;
+            body.velocity = Vector2.zero;
             return;
         }
         {
@@ -36,17 +39,32 @@ public class BallScript : MonoBehaviour
             InGame = true;
             body.velocity = Vector2.up * BallSpeed; // Задаем стабильную скорость
         }
+
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Bottom")
         {
-            Debug.Log("YOU LOSE BITCH HAHAHHAHA");
             body.velocity = Vector2.zero;
             InGame = false;
             ScoreManager.lives--;
  
         }
+
+
+       
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Paddle")
+        {
+            Audiomanager.PlayPaddleHitSound();
+        }
+        
+        BallSpeed += 0.069f;
     }
 }

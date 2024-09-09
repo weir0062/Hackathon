@@ -7,7 +7,7 @@ public class Brick : MonoBehaviour
     public int hitsToBreak = 2;
     public Sprite DefaultSprite;
     public Sprite BrokenSprite;
-
+    public AudioManager Audiomanager;
     public ScoreManager ScoreManager;
 
     void Start()
@@ -18,16 +18,23 @@ public class Brick : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         hitsToBreak--;
-
+         
+      BallScript ball = collision.gameObject.GetComponent<BallScript>();
+        if (ball != null)
+        {
+            Audiomanager = ball.Audiomanager;
+        }
         if (hitsToBreak == 1)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = BrokenSprite;
+            Audiomanager.PlayBrickHitSound();
 
         }
         if (hitsToBreak <= 0)
         {
             Destroy(gameObject);
             ScoreManager.score++;
+            Audiomanager.PlayBrickBreakSound();
         }
     }
 }
